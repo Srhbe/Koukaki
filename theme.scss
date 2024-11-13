@@ -1,0 +1,730 @@
+// Définition des animations
+@keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes slideOut {
+    0% {
+      transform: translateY(0px);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  @keyframes slideUpContent {
+    from {
+      transform: translateY(30%); 
+      opacity: 0; 
+    }
+    to {
+      transform: translateY(0); 
+      opacity: 1;
+    }
+  }
+
+  @keyframes rotateFlowerMenu {
+    0% {
+        transform: scale(0.5) rotate(0deg);
+    }
+    100% {
+        transform: scale(0.5) rotate(360deg);
+    }
+}
+  
+  @keyframes rotateFlower {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translate3d(6px,6px,0);
+    }
+    12% {
+      transform: translate3d(0px,6px,0);
+    }
+    24% {
+      transform: translate3d(6px,-4px,0);
+    }
+    36% {
+      transform: translate3d(6px,0px,0);
+    }
+    48% {
+      transform: translate3d(-4px,-6px,0);
+    }
+    60% {
+      transform: translate3d(0px,-4px,0);
+    }
+    72% {
+      transform: translate3d(-8px,6px,0);
+    }
+    84% {
+      transform: translate3d(-4px,0px,0);
+    }
+    100% {
+      transform: translate3d(6px,6px,0); 
+    }
+  }
+
+  @keyframes animTitle {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+  .titre {
+    position: relative;
+    overflow: hidden; }
+
+   img {
+      &.slide-up {
+        position: absolute;
+        left: calc(50% - 380px);
+        bottom: 200px;
+        z-index: 10;
+        animation: float 6s 2s infinite ease-in-out, slideUp 3s forwards;
+        transition: transform 0.5s ease-out;
+        &.down {
+          animation: float 6s 2s infinite ease-in-out, slideOut 2s forwards;
+          transition: transform 0.5s ease-out;
+  
+        }
+        &.up {
+          animation: float 6s 2s infinite ease-in-out, slideIn 2s forwards;
+          transition: transform 0.5s ease-out;
+  
+        }
+      }
+    } 
+
+    .banner {
+      position: relative;
+      object-fit: contain;
+      height: 800px;
+      background-image: none;
+      z-index: 1;
+      /*    Media query : max-width: 920px    */
+      @media all and (max-width: 920px) {
+        .banner img {
+        width: 70%;
+      }
+      }
+    } 
+    
+    .banner__background, 
+    .banner__video {
+      position: absolute;
+      bottom: 0px;
+      animation: slideDown 2s 300ms both;
+      object-fit: cover;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      transform: translateY(0); 
+      transition: transform 0.5s ease-out;
+    }
+
+  /* Animation titres */
+  
+  h2, h3 {
+    opacity: 0;
+    transform: translateY(50px); 
+    transition: opacity 0.5s, transform 1s; 
+  }
+  
+  .in-view {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+
+  /* Retrait vidéo sur mobile */
+
+   @media all and (max-width: 700px) {
+      .banner {
+        min-height: 400px !important;
+        height: auto !important;
+        width: 100vw;
+      }
+    
+      img {
+      &.slide-up {
+        width: 65%;
+        left: 100px;
+        bottom: 108px;
+      }}
+    
+      .banner__background {
+        display: block !important; /* Afficher l'image sur mobile */
+      }
+    
+      .banner__video {
+        display: none !important; /* Masquer la vidéo sur mobile */
+      }
+    
+    }
+    
+    /* section story, animation d'apparition */ 
+
+    #story {
+      animation: slideUpContent 2s forwards; //appliquer l'élément à toute la section
+    
+      div p {
+        animation: slideDown 2s forwards; //tous les éléments directs p de div
+        opacity: 0;
+      }
+    }
+
+    /* Slider */
+
+      #characters {
+        flex-direction: column;
+        animation: slideUpContent 2s forwards;
+    
+        .swiper {
+          width: 60%;
+          padding: 50px 0;
+        }
+    
+        .swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 300px;
+          height: 300px;
+  
+          img {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+  
+  /* Lieu */
+
+  .story {
+    #place {
+      background-image: url("../assets/images/Studio_Koukaki-image_place.png");
+      display: flex;
+      background-size: cover;
+      position: relative;
+  
+      .h3 {
+        animation: slideUpContent 2s forwards;
+      }
+  
+      div p {
+        animation: slideDown 2s forwards;
+        opacity: 0;
+      }
+    }
+  
+    .h2,
+    .character-title {
+      animation: slideUpContent 2s forwards;
+    }
+
+    h2 {
+      animation: slideUpContent 2s forwards;
+      display: block;
+      &::before {
+        position: absolute;
+        animation: slideUpContent 2s forwards;
+        left: -7em;
+        top: 1.8em;
+        z-index: -1;
+      } 
+      &::after {
+        animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+        height: 154px;
+        width: 154px;
+        left: -6.3em;
+        top: 6em;
+      }
+    }
+  
+    .story__article {
+      &::before,
+      &::after {
+        position: absolute;
+        animation: slideUpContent 2s forwards;
+        display: block;
+      }
+  
+      &::after {
+        animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+      }
+    }
+  }  
+  
+  /* Nuages */
+
+  .bigCloud {
+    height: 122px;
+    width: 316px;
+    filter: blur(15px);
+    top: 60px;
+    right: 70px;
+    position: absolute;
+  }
+  
+  .littleCloud {
+    height: 55px;
+    width: 142px;
+    filter: blur(15px);
+    top: 250px;
+    right: 500px;
+    position: absolute;
+  }
+
+  /* studio Koukaki */
+
+  #studio {
+    animation: slideUpContent 2s forwards; // appliquer l'élément à toute la section
+  
+    h2 {
+      width: 100%;
+      overflow: visible;
+      
+      &::before,
+      &::after {
+        position: absolute;
+        animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+        display: block;
+      }
+    }
+    
+    div p {
+      animation: slideDown 2s forwards; // tous les éléments directs p de div
+      opacity: 0;
+    }
+    
+    .kou {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    
+    .desc {
+      display: flex;
+      margin: 0 auto;
+      justify-content: space-between;
+    }
+  }
+  
+
+  // Section Nomination
+
+  .nomination {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    animation: slideUpContent 2s forwards;
+
+    &::before {
+      content: url("../assets/images/Sunflower.png");
+      position: absolute;
+      left: 4em;
+      top: -55px;
+      transform: scale(1.2);
+      animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+    }
+
+    &::after {
+      content: url("../assets/images/orchid.png");
+      position: absolute;
+      right: -96px;
+      bottom: 90%;
+      animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+    }
+
+    h3 {
+      opacity: 1 !important;
+      background-image: url("../assets/images/orange-background.png");
+      background-size: cover;
+      background-position: center;
+      text-align: left;
+      padding-top: 85px;
+      font-size: 40px;
+      font-weight: 400;
+      text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+      line-height: 46px;
+      width: 799px;
+      height: 300px;
+      margin-right: 25px;
+    }
+
+    img {
+      height: 125px;
+      margin-top: 50px;
+    }
+
+    /* Media Query : moins de 700px */
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+
+      &::before,
+      &::after {
+        position: relative;
+        transform: scale(1);
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+
+      h3 {
+        font-size: 24px;
+        width: 90%;
+        height: auto;
+        margin-right: 0;
+        padding-top: 30px;
+      }
+
+      img {
+        height: 100px;
+        margin-top: 30px;
+      }
+    }
+
+    /* Media query : max-width: 580px */
+    @media all and (max-width: 580px) {
+    .nomination h3 {
+      display: flex;
+      justify-content: center;
+      font-size: 19px;
+    }
+    }
+  }
+  
+  /* Footer */
+
+  .site-footer {
+    animation: slideUpContent 2s forwards;
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+/* menu */
+
+.modal__content {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  background-color: antiquewhite;
+
+  &.open {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    background: #FFF5E9;
+    height: calc(-80px + 100vh);
+
+    li {
+      opacity: 0;
+      transform: translateY(50px);
+      animation: animTitle 0.5s forwards;
+
+      &:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+
+      &:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      &:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+
+      > a:hover {
+        filter: drop-shadow(0px 0px 5px #ff5c00);
+        -webkit-filter: drop-shadow(0px 0px 5px #ff5c00);
+        -moz-filter: drop-shadow(0px 0px 5px #ff5c00);
+      }
+    }
+  }
+
+  .modal__content--logo {
+    margin: 40px;
+    width: 160px;
+    filter: drop-shadow(0px 0px 10px rgba(255, 92, 0, 0.6));
+    -webkit-filter: drop-shadow(0px 0px 10px rgba(255, 92, 0, 0.6));
+    -moz-filter: drop-shadow(0px 0px 10px rgba(255, 92, 0, 0.6));
+  }
+
+  .modal__content--footer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+  }
+}
+
+.modal .liste {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 33px;
+}
+
+#site-navigation {
+  position: relative;
+}
+
+.main-navigation {
+  li {
+    position: relative;
+    font-size: 64px;
+  }
+
+  .line {
+    height: 3px;
+    background-color: #000;
+    display: block;
+    margin: auto;
+    margin-block: 2px;
+    width: 38px;
+    height: 2px;
+  }
+}
+
+.modal__burger {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 8px;
+  width: 40px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  right: 5em;
+  cursor: pointer;
+
+  &.close {
+    .line {
+      height: 2px;
+      background-color: #000;
+      display: block;
+      width: 100%;
+      margin: 0;
+      transition: all .3s ease-in-out;
+
+      &:first-child {
+        transform: rotate(45deg) translate3d(8px, 6px, 0);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:last-child {
+        transform: rotate(-45deg) translate3d(8px, -6px, 0);
+      }
+    }
+  }
+}
+
+/* deco menu */ 
+
+.modal__content--story {
+  &::before {
+    content: url("../assets/images/Kawaneko-1.png");
+    position: absolute;
+    right: 460px;
+    top: -50px;
+    animation: float 6s 200ms infinite ease-in-out;
+    transform: scale(0.7);
+  }
+
+  &::after {
+    content: url("../assets/images/Sunflower.png");
+    position: absolute;
+    left: 10em;
+    bottom: 0em;
+    animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+  }
+}
+
+.modal__content--place {
+  &::before {
+    content: url("../assets/images/Jaakuna-1.png");
+    position: absolute;
+    left: 9em;
+    animation: float 6s 200ms infinite ease-in-out;
+    transform: scale(0.7);
+  }
+
+  &::after {
+    content: url("../assets/images/flower.png");
+    position: absolute;
+    background-size: contain;
+    right: 7em;
+    bottom: 0em;
+    animation: slideUpContent 2s forwards, rotateFlowerMenu 10s linear infinite 2s;
+    animation-fill-mode: both;
+  }
+}
+
+.modal__content--footer {
+  &::before {
+    content: url("../assets/images/Orenjiro-1.png");
+    position: absolute;
+    right: 48em;
+    bottom: 2em;
+    animation: float 5s 300ms infinite ease-in-out;
+  }
+
+  &::after {
+    content: url("../assets/images/hibiscus_footer.png");
+    position: absolute;
+    left: 31em;
+    top: -19em;
+    animation: slideUpContent 2s forwards, rotateFlowerMenu 10s linear infinite 2s;
+    animation-fill-mode: both;
+  }
+}
+
+.modal__content {
+  &::after {
+    content: url("../assets/images/orchid.png");
+    position: absolute;
+    left: -5em;
+    top: 8em;
+    transform: scale(0.8);
+    animation: slideUpContent 2s forwards, rotateFlower 10s linear infinite 2s;
+  }
+}
+
+.modal__content--characters {
+  &::after {
+    content: url("../assets/images/random_flower.png");
+    position: absolute;
+    left: 13em;
+    top: -1em;
+    animation: slideUpContent 2s forwards, rotateFlowerMenu 10s linear infinite 2s;
+    animation-fill-mode: both;
+  }
+}
+
+/* Media query : max-width: 700px */
+
+@media all and (min-width: 300px) and (max-width: 700px) { 
+  .main-navigation {
+    height: 80px;
+
+    ul {
+      display: flex !important;
+    }
+
+    .site-title {
+      display: none;
+    }
+  }
+
+  .site-title {
+    font-size: 16px !important;
+    left: 5% !important;
+    display: block;
+  }
+
+  .modal__content.open {
+    height: calc(-42px + 140vh);
+  }
+
+  .liste {
+    li {
+      font-size: 36px !important; 
+    }
+  }
+
+  .modal__content--story::before,
+  .modal__content--place::before,
+  .modal__content--footer::before {
+    content: '';
+  }
+
+  .modal__content::after,
+  .modal__content--story::after,
+  .modal__content--characters::after,
+  .modal__content--place::after,
+  .modal__content--footer::after {
+    content: '';
+  }
+
+  .nomination {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+    &::before,
+    &::after {
+      position: relative;
+      transform: scale(1);
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    h3 {
+      display: flex;
+      justify-content: center;
+      font-size: 24px;
+      width: 90%;
+      height: auto;
+      margin-right: 0;
+      padding-top: 30px;
+    }
+
+    img {
+      height: 100px;
+      width: 200px;
+      margin-top: 30px;
+    }
+  }
+}
+
